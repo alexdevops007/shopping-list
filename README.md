@@ -34,4 +34,4 @@ Liste de Courses est une application simple développée avec React Native pour 
 
 ## Licence
 
-Ce projet est sous licence [MIT]([lien_vers_licence](https://www.linkedin.com/in/alex-simisi-nta-98b67a168/)).
+Ce projet est sous licence [Alex Simisi Nta](https://www.linkedin.com/in/alex-simisi-nta-98b67a168/)).
