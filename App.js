@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
   const [product, setProduct] = useState("");
@@ -23,13 +23,15 @@ export default function App() {
         />
         <Button title="valider" onPress={submitHandler} />
       </View>
-      <View style={styles.items}>
-        {list.map((product, index) => (
-          <Text style={styles.element} key={index}>
-            {product}
-          </Text>
-        ))}
-      </View>
+      <ScrollView>
+        <View style={styles.items}>
+          {list.map((product, index) => (
+            <Text style={styles.element} key={index}>
+              {product}
+            </Text>
+          ))}
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#c0392b",
     color: "#fff",
     padding: 15,
-    fontSize: 16,
-    marginTop: 5,
+    fontSize: 17,
+    marginVertical: 5
   },
 });
