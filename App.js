@@ -8,8 +8,10 @@ export default function App() {
   const inputHandler = (val) => setProduct(val);
 
   const submitHandler = () => {
-    setList((currentList) => [...currentList, product]);
-    setProduct("");
+    if (product.trim() !== "") {
+      setList((currentList) => [...currentList, product.trim()]);
+      setProduct("");
+    }
   };
 
   return (
