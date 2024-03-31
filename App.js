@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Button,
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -39,7 +40,7 @@ export default function App() {
         />
         <Button title="valider" onPress={submitHandler} />
       </View>
-      <ScrollView>
+      {/* <ScrollView>
         <View style={styles.items}>
           {list
             .filter((product) => product.trim() !== "")
@@ -50,7 +51,18 @@ export default function App() {
               </Text>
             ))}
         </View>
-      </ScrollView>
+      </ScrollView> */}
+
+      <FlatList
+        data={list.filter(product => product.trim() !== "").sort()}
+        renderItem={({ item }) => (
+          <Text style={styles.element}>
+            {item}
+          </Text>
+        )}
+        keyExtractor={(item, index) => index.toString()}
+        style={styles.items}
+      />
     </View>
   );
 }
@@ -62,6 +74,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: "row",
+    marginBottom: 15,
   },
   textInput: {
     borderColor: "gray",
