@@ -15,7 +15,7 @@ export default function App() {
   const inputHandler = (val) => setProduct(val);
 
   const capitalizeFirstLetter = (string) =>
-    string.charArt(0).toUpperCase() + string.slice(1);
+    string[0].toUpperCase() + string.slice(1);
 
   const submitHandler = () => {
     const trimmedProduct = product.trim();
@@ -41,11 +41,14 @@ export default function App() {
       </View>
       <ScrollView>
         <View style={styles.items}>
-          {list.map((product, index) => (
-            <Text style={styles.element} key={index}>
-              {product}
-            </Text>
-          ))}
+          {list
+            .filter((product) => product.trim() !== "")
+            .sort((a, b) => a.localeCompare(b))
+            .map((product, index) => (
+              <Text style={styles.element} key={index}>
+                {product}
+              </Text>
+            ))}
         </View>
       </ScrollView>
     </View>
