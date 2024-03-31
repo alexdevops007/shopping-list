@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function App() {
   const [product, setProduct] = useState("");
@@ -7,9 +14,16 @@ export default function App() {
 
   const inputHandler = (val) => setProduct(val);
 
+  const capitalizeFirstLetter = (string) =>
+    string.charArt(0).toUpperCase() + string.slice(1);
+
   const submitHandler = () => {
+    const trimmedProduct = product.trim();
     if (product.trim() !== "") {
-      setList((currentList) => [...currentList, product.trim()]);
+      setList((currentList) => [
+        ...currentList,
+        capitalizeFirstLetter(trimmedProduct),
+      ]);
       setProduct("");
     }
   };
@@ -62,6 +76,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     padding: 15,
     fontSize: 17,
-    marginVertical: 5
+    marginVertical: 5,
   },
 });
