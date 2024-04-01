@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Button, FlatList, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import ProductInput from "./components/ProductInput";
+import ProductList from "./components/ProductList";
 
 export default function App() {
   const [list, setList] = useState([]);
@@ -8,7 +9,7 @@ export default function App() {
   const capitalizeFirstLetter = (string) => {
     return {
       key: Date.now().toString(),
-      name: string.charAt(0).toUpperCase() + string.slice(1)
+      name: string.charAt(0).toUpperCase() + string.slice(1),
     };
   };
 
@@ -16,28 +17,16 @@ export default function App() {
     setList((currentList) => [
       ...currentList,
       capitalizeFirstLetter(productName),
-    ]); 
+    ]);
 
-  const removeItem = (key) => {
-    setList((currentList) => currentList.filter(item => item.key !== key));
+  const removeProductFromList = (key) => {
+    setList((currentList) => currentList.filter((item) => item.key !== key));
   };
 
   return (
     <View style={styles.container}>
       <ProductInput onProductAdd={addProductToList} />
-      <FlatList
-        data={list}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <Text style={styles.element}>
-              {item.name}
-            </Text>
-            <Button title="X" onPress={() => removeItem(item.key)} />
-          </View>
-        )}
-        keyExtractor={(item) => item.key}
-        style={styles.items}
-      />
+      <ProductList data={list} onProductRemove={removeProductFromList} />
     </View>
   );
 }
@@ -46,21 +35,5 @@ const styles = StyleSheet.create({
   container: {
     padding: 40,
     paddingTop: 60,
-  },
-  items: {
-    marginTop: 10,
-  },
-  element: {
-    backgroundColor: "#c0392b",
-    color: "#fff",
-    padding: 15,
-    fontSize: 17,
-    marginVertical: 5,
-    marginRight: 10,
-    flexGrow: 1,
-  },
-  listItem: {
-    flexDirection: "row",
-    alignItems: "center",
   },
 });
