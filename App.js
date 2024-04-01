@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { Button, FlatList, StyleSheet, Text, TextInput, View } from "react-native";
+import { useState } from "react";
+import { Button, FlatList, StyleSheet, Text, View } from "react-native";
+import ProductInput from "./components/ProductInput";
 
 export default function App() {
-  const [product, setProduct] = useState("");
   const [list, setList] = useState([]);
-
-  const inputHandler = (val) => setProduct(val);
 
   const capitalizeFirstLetter = (string) => {
     return {
@@ -14,13 +12,11 @@ export default function App() {
     };
   };
 
-  const submitHandler = () => {
-    const trimmedProduct = product.trim();
-    if (trimmedProduct !== "") {
-      setList((currentList) => [...currentList, capitalizeFirstLetter(trimmedProduct)]);
-      setProduct("");
-    }
-  };
+  const addProductToList = (productName) =>
+    setList((currentList) => [
+      ...currentList,
+      capitalizeFirstLetter(productName),
+    ]); 
 
   const removeItem = (key) => {
     setList((currentList) => currentList.filter(item => item.key !== key));
@@ -28,15 +24,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Nouveau produit"
-          onChangeText={inputHandler}
-          value={product}
-        />
-        <Button title="Valider" onPress={submitHandler} />
-      </View>
+      <ProductInput onProductAdd={addProductToList} />
       <FlatList
         data={list}
         renderItem={({ item }) => (
@@ -58,17 +46,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 40,
     paddingTop: 60,
-  },
-  inputContainer: {
-    flexDirection: "row",
-  },
-  textInput: {
-    borderColor: "gray",
-    borderWidth: 1,
-    padding: 5,
-    paddingLeft: 9,
-    fontSize: 16,
-    flexGrow: 1,
   },
   items: {
     marginTop: 10,
