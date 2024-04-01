@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
@@ -22,6 +22,10 @@ export default function App() {
     }
   };
 
+  const removeItem = (key) => {
+    setList((currentList) => currentList.filter(item => item.key !== key));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -36,9 +40,12 @@ export default function App() {
       <FlatList
         data={list}
         renderItem={({ item }) => (
-          <Text style={styles.element}>
-            {item.name}
-          </Text>
+          <View style={styles.listItem}>
+            <Text style={styles.element}>
+              {item.name}
+            </Text>
+            <Button title="Supprimer" onPress={() => removeItem(item.key)} />
+          </View>
         )}
         keyExtractor={(item) => item.key}
         style={styles.items}
@@ -72,5 +79,10 @@ const styles = StyleSheet.create({
     padding: 15,
     fontSize: 17,
     marginVertical: 5,
+    marginRight: 10,
+  },
+  listItem: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
