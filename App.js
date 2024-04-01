@@ -44,7 +44,7 @@ export default function App() {
             <Text style={styles.element}>
               {item.name}
             </Text>
-            <Button title="Supprimer" onPress={() => removeItem(item.key)} />
+            <Button title="X" onPress={() => removeItem(item.key)} />
           </View>
         )}
         keyExtractor={(item) => item.key}
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginVertical: 5,
     marginRight: 10,
+    flexGrow: 1,
   },
   listItem: {
     flexDirection: "row",
