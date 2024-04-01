@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
