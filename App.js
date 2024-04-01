@@ -7,16 +7,17 @@ export default function App() {
 
   const inputHandler = (val) => setProduct(val);
 
-  const capitalizeFirstLetter = (string) =>
-    string[0].toUpperCase() + string.slice(1);
+  const capitalizeFirstLetter = (string) => {
+    return {
+      key: Date.now().toString(),
+      name: string.charAt(0).toUpperCase() + string.slice(1)
+    };
+  };
 
   const submitHandler = () => {
     const trimmedProduct = product.trim();
-    if (product.trim() !== "") {
-      setList((currentList) => [
-        ...currentList,
-        capitalizeFirstLetter(trimmedProduct),
-      ]);
+    if (trimmedProduct !== "") {
+      setList((currentList) => [...currentList, capitalizeFirstLetter(trimmedProduct)]);
       setProduct("");
     }
   };
@@ -32,27 +33,14 @@ export default function App() {
         />
         <Button title="Valider" onPress={submitHandler} />
       </View>
-      {/* <ScrollView>
-        <View style={styles.items}>
-          {list
-            .filter((product) => product.trim() !== "")
-            .sort((a, b) => a.localeCompare(b))
-            .map((product, index) => (
-              <Text style={styles.element} key={index}>
-                {product}
-              </Text>
-            ))}
-        </View>
-      </ScrollView> */}
-
       <FlatList
-        data={list.filter(product => product.trim() !== "").sort()}
+        data={list}
         renderItem={({ item }) => (
           <Text style={styles.element}>
-            {item}
+            {item.name}
           </Text>
         )}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item.key}
         style={styles.items}
       />
     </View>
