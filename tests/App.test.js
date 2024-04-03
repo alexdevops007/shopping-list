@@ -1,7 +1,7 @@
 // App.test.js
 import React from "react";
-import { render, fireEvent } from "@testing-library/react-native";
-import App from "./App";
+import { render, fireEvent } from "../test-utils";
+import App from "../App";
 
 test("doit afficher le champ de saisie et la liste de produits", () => {
   const { getByPlaceholderText, getByText } = render(<App />);

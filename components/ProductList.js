@@ -1,4 +1,11 @@
-import { Button, FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from "react-native";
 
 export default function ProductList({ data, onProductRemove }) {
   const removeItem = (key) => onProductRemove(key);
@@ -7,10 +14,16 @@ export default function ProductList({ data, onProductRemove }) {
     <FlatList
       data={data}
       renderItem={({ item }) => (
-        <View style={styles.listItem}>
-          <Text style={styles.element}>{item.name}</Text>
-          <Button title="X" onPress={() => removeItem(item.key)} />
-        </View>
+        <TouchableHighlight
+          onPress={() => removeItem(item.key)}
+          activeOpacity={0.5}
+          underlayColor="#273c75"
+        >
+          <View style={styles.listItem}>
+            <Text style={styles.element}>{item.name}</Text>
+            {/* <Button title="X" onPress={() => removeItem(item.key)} /> */}
+          </View>
+        </TouchableHighlight>
       )}
       keyExtractor={(item) => item.key}
       style={styles.items}
@@ -23,7 +36,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   element: {
-    backgroundColor: "#c0392b",
+    backgroundColor: "#192a56",
     color: "#fff",
     padding: 15,
     fontSize: 17,

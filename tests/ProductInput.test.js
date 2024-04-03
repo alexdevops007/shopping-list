@@ -1,6 +1,6 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react-native";
-import ProductInput from "./ProductInput";
+import { render, fireEvent } from "../test-utils";
+import ProductInput from "../components/ProductInput";
 
 test("doit afficher le champ de saisie", () => {
   const { getByPlaceholderText } = render(<ProductInput />);
@@ -17,7 +17,9 @@ test("doit mettre à jour la valeur du champ de saisie lorsqu'une saisie est eff
 
 test("doit appeler la fonction onProductAdd lorsqu'un nouveau produit est soumis", () => {
   const onProductAddMock = jest.fn();
-  const { getByPlaceholderText, getByText } = render(<ProductInput onProductAdd={onProductAddMock} />);
+  const { getByPlaceholderText, getByText } = render(
+    <ProductInput onProductAdd={onProductAddMock} />
+  );
   const input = getByPlaceholderText("Nouveau produit");
   fireEvent.changeText(input, "Banane");
   const button = getByText("Valider");
