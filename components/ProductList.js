@@ -17,13 +17,6 @@ export default function ProductList({ data, onProductRemove }) {
         <Pressable
           // onLongPress={() => removeItem(item.key)}
           onPress={() => removeItem(item.key)}
-          // style={({ pressed }) => [
-          //   {
-          //     backgroundColor: pressed ? "#0097e6" : "#c23616",
-          //   },
-          // ]}
-          // delayLongPress={2000}
-          android_ripple={{ color: "purple" }}
         >
           <View style={styles.listItem}>
             <Text style={styles.element}>{item.name}</Text>

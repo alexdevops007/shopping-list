@@ -1,5 +1,5 @@
-import { Button, StyleSheet, TextInput, View } from 'react-native'
-import { useState } from 'react'
+import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
+import { useState } from "react";
 
 export default function ProductInput({ onProductAdd }) {
   const [product, setProduct] = useState("");
@@ -8,9 +8,35 @@ export default function ProductInput({ onProductAdd }) {
 
   const submitHandler = () => {
     const trimmedProduct = product.trim();
-    if (trimmedProduct !== "") {
+    if (trimmedProduct !== "" && trimmedProduct.length > 1) {
       onProductAdd(trimmedProduct);
       setProduct("");
+    } else {
+      Alert.alert(
+        "Désolé",
+        "Nombre de caractères doit être > 1",
+        [
+          {
+            text: `D'ACCORD`,
+            onPress: () => console.warn("Cancel Pressed"),
+            style: "cancel",
+          },
+          {
+            text: "COMPRIS",
+            onPress: () => console.warn("OK Pressed"),
+            style: "destructive",
+          },
+          {
+            text: "OUI",
+            onPress: () => console.warn("OK Pressed"),
+            style: "destructive",
+          },
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => console.warn("Dismiss"),
+        }
+      );
     }
   };
   return (
