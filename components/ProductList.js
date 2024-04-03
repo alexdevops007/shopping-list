@@ -1,9 +1,9 @@
 import {
   Button,
   FlatList,
+  Pressable,
   StyleSheet,
   Text,
-  TouchableHighlight,
   View,
 } from "react-native";
 
@@ -14,16 +14,22 @@ export default function ProductList({ data, onProductRemove }) {
     <FlatList
       data={data}
       renderItem={({ item }) => (
-        <TouchableHighlight
+        <Pressable
+          // onLongPress={() => removeItem(item.key)}
           onPress={() => removeItem(item.key)}
-          activeOpacity={0.5}
-          underlayColor="#273c75"
+          // style={({ pressed }) => [
+          //   {
+          //     backgroundColor: pressed ? "#0097e6" : "#c23616",
+          //   },
+          // ]}
+          // delayLongPress={2000}
+          android_ripple={{ color: "purple" }}
         >
           <View style={styles.listItem}>
             <Text style={styles.element}>{item.name}</Text>
             {/* <Button title="X" onPress={() => removeItem(item.key)} /> */}
           </View>
-        </TouchableHighlight>
+        </Pressable>
       )}
       keyExtractor={(item) => item.key}
       style={styles.items}
