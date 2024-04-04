@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Modal, StyleSheet, Text, View } from "react-native";
+import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import ProductInput from "./components/ProductInput";
 import ProductList from "./components/ProductList";
 
 export default function App() {
   const [list, setList] = useState([]);
-  const [isVisibleModal, setIsVisibleModal] = useState(false)
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
 
   const capitalizeFirstLetter = (string) => {
     return {
@@ -21,9 +21,9 @@ export default function App() {
         capitalizeFirstLetter(productName),
       ]);
     } else {
-      setIsVisibleModal(true)
+      setIsVisibleModal(true);
     }
-  }
+  };
 
   const removeProductFromList = (key) => {
     setList((currentList) => currentList.filter((item) => item.key !== key));
@@ -31,11 +31,33 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Modal 
+      <Modal
         visible={isVisibleModal}
         onRequestClose={() => setIsVisibleModal(false)}
+        animationType="slide"
+        hardwareAccelerated
+        transparent={true}
       >
-        <Text>Hello</Text>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalHeaderText}>OUPS !</Text>
+            </View>
+            <View style={styles.modalBody}>
+              <Text style={styles.modalBodyText}>
+                Merci d'indiquer plus d'un seul caractère
+              </Text>
+            </View>
+            <View style={styles.modalFooter}>
+              <Pressable
+                style={styles.pressableBtnModal}
+                onPress={() => setIsVisibleModal(false)}
+              >
+                <Text style={styles.modalFooterText}>OK</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
       </Modal>
       <ProductInput onProductAdd={addProductToList} />
       <ProductList data={list} onProductRemove={removeProductFromList} />
@@ -47,5 +69,54 @@ const styles = StyleSheet.create({
   container: {
     padding: 40,
     paddingTop: 60,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.2)",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    width: "90%",
+    height: 250,
+    borderRadius: 15,
+    alignItems: "center",
+  },
+  modalHeader: {
+    width: "100%",
+    padding: 16,
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "#95a5a6",
+  },
+  modalHeaderText: {
+    color: "grey",
+    fontSize: 17,
+  },
+  modalBody: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalBodyText: {
+    fontSize: 17,
+  },
+  modalFooter: {
+    width: "100%",
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+  },
+  pressableBtnModal: {
+    backgroundColor: "#192a56",
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+  },
+  modalFooterText: {
+    fontSize: 17,
+    color: "#fff",
+    textAlign: "center",
+    padding: 16,
   },
 });

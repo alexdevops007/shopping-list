@@ -20,7 +20,6 @@ export default function ProductList({ data, onProductRemove }) {
         >
           <View style={styles.listItem}>
             <Text style={styles.element}>{item.name}</Text>
-            {/* <Button title="X" onPress={() => removeItem(item.key)} /> */}
           </View>
         </Pressable>
       )}
