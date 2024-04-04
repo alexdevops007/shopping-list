@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Modal, StyleSheet, Text, View } from "react-native";
 import ProductInput from "./components/ProductInput";
 import ProductList from "./components/ProductList";
 
 export default function App() {
   const [list, setList] = useState([]);
+  const [isVisibleModal, setIsVisibleModal] = useState(false)
 
   const capitalizeFirstLetter = (string) => {
     return {
@@ -13,11 +14,16 @@ export default function App() {
     };
   };
 
-  const addProductToList = (productName) =>
-    setList((currentList) => [
-      ...currentList,
-      capitalizeFirstLetter(productName),
-    ]);
+  const addProductToList = (productName) => {
+    if (productName.length > 1) {
+      setList((currentList) => [
+        ...currentList,
+        capitalizeFirstLetter(productName),
+      ]);
+    } else {
+      setIsVisibleModal(true)
+    }
+  }
 
   const removeProductFromList = (key) => {
     setList((currentList) => currentList.filter((item) => item.key !== key));
@@ -25,6 +31,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Modal 
+        visible={isVisibleModal}
+        onRequestClose={() => setIsVisibleModal(false)}
+      >
+        <Text>Hello</Text>
+      </Modal>
       <ProductInput onProductAdd={addProductToList} />
       <ProductList data={list} onProductRemove={removeProductFromList} />
     </View>
