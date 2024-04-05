@@ -14,12 +14,13 @@ export default function ProductInput({ onProductAdd }) {
     // }
   };
   return (
-    <View style={styles.inputContainer}>
+    <View>
       <TextInput
         style={styles.textInput}
         placeholder="Nouveau produit"
         onChangeText={inputHandler}
         value={product}
+        multiline
       />
       <Button title="Valider" onPress={submitHandler} />
     </View>
@@ -27,15 +28,13 @@ export default function ProductInput({ onProductAdd }) {
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    flexDirection: "row",
-  },
   textInput: {
     borderColor: "gray",
     borderWidth: 1,
-    padding: 5,
+    padding: 10,
     paddingLeft: 9,
     fontSize: 16,
     flexGrow: 1,
+    marginBottom: 9
   },
 });
