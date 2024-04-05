@@ -20,7 +20,7 @@ export default function ProductInput({ onProductAdd }) {
         placeholder="Nouveau produit"
         onChangeText={inputHandler}
         value={product}
-        multiline
+        maxLength={9}
       />
       <Button title="Valider" onPress={submitHandler} />
     </View>
