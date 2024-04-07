@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import ProductInput from "./components/ProductInput";
 import ProductList from "./components/ProductList";
+import DismissKeyboard from "./components/DismissKeyboard";
 
 export default function App() {
   const [list, setList] = useState([]);
@@ -30,38 +31,40 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <Modal
-        visible={isVisibleModal}
-        onRequestClose={() => setIsVisibleModal(false)}
-        animationType="slide"
-        hardwareAccelerated
-        transparent={true}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <View style={styles.modalHeader}>
-              <Text style={styles.modalHeaderText}>OUPS !</Text>
-            </View>
-            <View style={styles.modalBody}>
-              <Text style={styles.modalBodyText}>
-                Merci d'indiquer plus d'un seul caractère
-              </Text>
-            </View>
-            <View style={styles.modalFooter}>
-              <Pressable
-                style={styles.pressableBtnModal}
-                onPress={() => setIsVisibleModal(false)}
-              >
-                <Text style={styles.modalFooterText}>OK</Text>
-              </Pressable>
+    <DismissKeyboard>
+      <View style={styles.container}>
+        <Modal
+          visible={isVisibleModal}
+          onRequestClose={() => setIsVisibleModal(false)}
+          animationType="slide"
+          hardwareAccelerated
+          transparent={true}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <View style={styles.modalHeader}>
+                <Text style={styles.modalHeaderText}>OUPS !</Text>
+              </View>
+              <View style={styles.modalBody}>
+                <Text style={styles.modalBodyText}>
+                  Merci d'indiquer plus d'un seul caractère
+                </Text>
+              </View>
+              <View style={styles.modalFooter}>
+                <Pressable
+                  style={styles.pressableBtnModal}
+                  onPress={() => setIsVisibleModal(false)}
+                >
+                  <Text style={styles.modalFooterText}>OK</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
-        </View>
-      </Modal>
-      <ProductInput onProductAdd={addProductToList} />
-      <ProductList data={list} onProductRemove={removeProductFromList} />
-    </View>
+        </Modal>
+        <ProductInput onProductAdd={addProductToList} />
+        <ProductList data={list} onProductRemove={removeProductFromList} />
+      </View>
+    </DismissKeyboard>
   );
 }
 
@@ -69,6 +72,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 40,
     paddingTop: 60,
+    flex: 1
   },
   modalContainer: {
     flex: 1,

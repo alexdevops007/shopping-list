@@ -20,7 +20,6 @@ export default function ProductInput({ onProductAdd }) {
         placeholder="Nouveau produit"
         onChangeText={inputHandler}
         value={product}
-        secureTextEntry
       />
       <Button title="Valider" onPress={submitHandler} />
     </View>
