@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { Button, Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import ProductInput from "./components/ProductInput";
 import ProductList from "./components/ProductList";
 import DismissKeyboard from "./components/DismissKeyboard";
@@ -7,6 +7,7 @@ import DismissKeyboard from "./components/DismissKeyboard";
 export default function App() {
   const [list, setList] = useState([]);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
+  const [displayAddProductModal, setDisplayAddProductModal] = useState(false);
 
   const capitalizeFirstLetter = (string) => {
     return {
@@ -16,6 +17,8 @@ export default function App() {
   };
 
   const addProductToList = (productName) => {
+    setDisplayAddProductModal(false);
+
     if (productName.length > 1) {
       setList((currentList) => [
         ...currentList,
@@ -24,6 +27,10 @@ export default function App() {
     } else {
       setIsVisibleModal(true);
     }
+  };
+
+  const cancelNewProduct = () => {
+    setDisplayAddProductModal(false);
   };
 
   const removeProductFromList = (key) => {
@@ -61,7 +68,16 @@ export default function App() {
             </View>
           </View>
         </Modal>
-        <ProductInput onProductAdd={addProductToList} />
+
+        <Button
+          title="Nouveau produit"
+          onPress={() => setDisplayAddProductModal(!displayAddProductModal)}
+        />
+        <ProductInput
+          onProductAdd={addProductToList}
+          displayModal={displayAddProductModal}
+          onProductCancel={cancelNewProduct}
+        />
         <ProductList data={list} onProductRemove={removeProductFromList} />
       </View>
     </DismissKeyboard>
@@ -72,7 +88,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 40,
     paddingTop: 60,
-    flex: 1
+    flex: 1,
   },
   modalContainer: {
     flex: 1,

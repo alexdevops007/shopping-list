@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     padding: 15,
     fontSize: 17,
     marginVertical: 5,
-    marginRight: 10,
+    // marginRight: 2,
     flexGrow: 1,
   },
   listItem: {
