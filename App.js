@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Button, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  Image,
+  ImageBackground,
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import ProductInput from "./components/ProductInput";
 import ProductList from "./components/ProductList";
 import DismissKeyboard from "./components/DismissKeyboard";
@@ -39,7 +48,12 @@ export default function App() {
 
   return (
     <DismissKeyboard>
-      <View style={styles.container}>
+      <ImageBackground
+        style={styles.container}
+        source={{
+          uri: "https://cdn.pixabay.com/photo/2021/05/30/19/52/abstract-rainbow-6296890_1280.jpg",
+        }}
+      >
         <Modal
           visible={isVisibleModal}
           onRequestClose={() => setIsVisibleModal(false)}
@@ -53,6 +67,16 @@ export default function App() {
                 <Text style={styles.modalHeaderText}>OUPS !</Text>
               </View>
               <View style={styles.modalBody}>
+                <Image
+                  source={require("./assets/red-check-128.png")}
+                  style={styles.redCheck}
+                />
+                {/* <Image
+                  source={{
+                    uri: "https://cdn.pixabay.com/photo/2013/07/12/12/40/abort-146096_1280.png",
+                  }}
+                  style={styles.redCheck}
+                /> */}
                 <Text style={styles.modalBodyText}>
                   Merci d'indiquer plus d'un seul caractère
                 </Text>
@@ -79,7 +103,7 @@ export default function App() {
           onProductCancel={cancelNewProduct}
         />
         <ProductList data={list} onProductRemove={removeProductFromList} />
-      </View>
+      </ImageBackground>
     </DismissKeyboard>
   );
 }
@@ -99,7 +123,7 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: "#fff",
     width: "90%",
-    height: 250,
+    height: 280,
     borderRadius: 15,
     alignItems: "center",
   },
@@ -138,5 +162,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: "center",
     padding: 16,
+  },
+  redCheck: {
+    width: 100,
+    height: 100,
   },
 });

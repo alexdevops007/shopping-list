@@ -36,11 +36,13 @@ const styles = StyleSheet.create({
   element: {
     backgroundColor: "#192a56",
     color: "#fff",
-    padding: 15,
+    padding: 17,
     fontSize: 17,
     marginVertical: 5,
     // marginRight: 2,
     flexGrow: 1,
+    borderRadius: 15,
+    fontWeight: "800"
   },
   listItem: {
     flexDirection: "row",

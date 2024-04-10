@@ -1,5 +1,6 @@
 import { Button, Modal, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
+import ButtonComponent from "./button/ButtonComponent";
 
 export default function ProductInput({
   onProductAdd,
@@ -28,10 +29,20 @@ export default function ProductInput({
         />
         <View style={styles.containerButton}>
           <View style={styles.buttonValidate}>
-            <Button title="Valider" onPress={submitHandler} color="#01a3a4" />
+            {/* <Button title="Valider" onPress={submitHandler} color="#01a3a4" /> */}
+            <ButtonComponent
+              btnTitle="Valider"
+              onPressHandler={submitHandler}
+              style={styles.bgBtnValidate}
+            />
           </View>
           <View style={styles.buttonCancel}>
-            <Button title="Annuler" onPress={onProductCancel} color="#ee5253" />
+            {/* <Button title="Annuler" onPress={onProductCancel} color="#ee5253" /> */}
+            <ButtonComponent
+              btnTitle="Annuler"
+              onPressHandler={onProductCancel}
+              style={styles.bgBtnCancel}
+            />
           </View>
         </View>
       </View>
@@ -56,12 +67,18 @@ const styles = StyleSheet.create({
   },
   containerButton: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   buttonValidate: {
     width: "45%",
   },
   buttonCancel: {
     width: "45%",
+  },
+  bgBtnValidate: {
+    backgroundColor: "#01a3a4",
+  },
+  bgBtnCancel: {
+    backgroundColor: "#ee5253",
   },
 });
