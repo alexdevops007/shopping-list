@@ -28,22 +28,18 @@ export default function ProductInput({
           value={product}
         />
         <View style={styles.containerButton}>
-          <View style={styles.buttonValidate}>
-            {/* <Button title="Valider" onPress={submitHandler} color="#01a3a4" /> */}
-            <ButtonComponent
-              btnTitle="Valider"
-              onPressHandler={submitHandler}
-              style={styles.bgBtnValidate}
-            />
-          </View>
-          <View style={styles.buttonCancel}>
-            {/* <Button title="Annuler" onPress={onProductCancel} color="#ee5253" /> */}
-            <ButtonComponent
-              btnTitle="Annuler"
-              onPressHandler={onProductCancel}
-              style={styles.bgBtnCancel}
-            />
-          </View>
+          <ButtonComponent
+            btnTitle="Valider"
+            onPressHandler={submitHandler}
+            style={styles.bgBtnValidate}
+          />
+
+          <ButtonComponent
+            btnTitle="Annuler"
+            onPressHandler={onProductCancel}
+            style={styles.bgBtnCancel}
+          />
+
         </View>
       </View>
     </Modal>
@@ -69,16 +65,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  buttonValidate: {
-    width: "45%",
-  },
-  buttonCancel: {
-    width: "45%",
-  },
   bgBtnValidate: {
     backgroundColor: "#01a3a4",
+    borderRadius: 6,
+    width: 150,
   },
   bgBtnCancel: {
     backgroundColor: "#ee5253",
+    borderRadius: 6,
+    width: 150,
   },
 });
