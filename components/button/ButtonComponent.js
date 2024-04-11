@@ -1,11 +1,11 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const ButtonComponent = ({ btnTitle, onPressHandler, style }) => {
+const ButtonComponent = ({ onPressHandler, style, children }) => {
   return (
     <Pressable onPress={onPressHandler}>
       <View style={{ ...styles.buttonWrapper, ...style }}>
-        <Text style={styles.buttonText}>{btnTitle}</Text>
+        <Text style={styles.buttonText}>{children}</Text>
       </View>
     </Pressable>
   );

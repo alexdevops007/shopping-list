@@ -100,12 +100,13 @@ export default function App() {
         /> */}
 
         <ButtonComponent
-          btnTitle="Nouveau produit"
           onPressHandler={() =>
             setDisplayAddProductModal(!displayAddProductModal)
           }
           style={styles.btnAddProduct}
-        />
+        >
+          Nouveau produit
+        </ButtonComponent>
 
         <ProductInput
           onProductAdd={addProductToList}

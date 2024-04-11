@@ -29,17 +29,18 @@ export default function ProductInput({
         />
         <View style={styles.containerButton}>
           <ButtonComponent
-            btnTitle="Valider"
             onPressHandler={submitHandler}
             style={styles.bgBtnValidate}
-          />
+          >
+            Valider
+          </ButtonComponent>
 
           <ButtonComponent
-            btnTitle="Annuler"
             onPressHandler={onProductCancel}
             style={styles.bgBtnCancel}
-          />
-
+          >
+            Annuler
+          </ButtonComponent>
         </View>
       </View>
     </Modal>
