@@ -13,6 +13,7 @@ import ProductList from "./components/ProductList";
 import DismissKeyboard from "./components/DismissKeyboard";
 import ButtonComponent from "./components/button/ButtonComponent";
 import HeaderComponent from "./components/header/HeaderComponent";
+import colors from "./constants/colors";
 
 export default function App() {
   const [list, setList] = useState([]);
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.2)",
   },
   modalContent: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     width: "90%",
     height: 280,
     borderRadius: 15,
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: "center",
     borderBottomWidth: 1,
-    borderBottomColor: "#95a5a6",
+    borderBottomColor: colors.secondary,
   },
   modalHeaderText: {
     color: "grey",
@@ -162,13 +163,13 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 15,
   },
   pressableBtnModal: {
-    backgroundColor: "#192a56",
+    backgroundColor: colors.primary,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
   },
   modalFooterText: {
     fontSize: 17,
-    color: "#fff",
+    color: colors.white,
     textAlign: "center",
     padding: 16,
   },
@@ -177,15 +178,15 @@ const styles = StyleSheet.create({
     height: 100,
   },
   btnAddProduct: {
-    backgroundColor: "#218c74",
+    backgroundColor: colors.success,
     padding: 20,
     borderRadius: 30,
     borderWidth: 3,
-    borderColor: "#fff",
+    borderColor: colors.white,
     marginBottom: 20,
-    marginTop: -30
+    marginTop: -30,
   },
   bgImage: {
     flex: 1,
-  }
+  },
 });

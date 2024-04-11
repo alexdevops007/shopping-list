@@ -1,12 +1,14 @@
-import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import colors from "../../constants/colors";
 
 const ButtonComponent = ({ onPressHandler, style, children }) => {
   return (
-    <TouchableOpacity 
-        onPress={onPressHandler}
-        activeOpacity={0.9}
-    >
+    <TouchableOpacity onPress={onPressHandler} activeOpacity={0.9}>
       <View style={{ ...styles.buttonWrapper, ...style }}>
         <Text style={styles.buttonText}>{children}</Text>
       </View>
@@ -18,11 +20,11 @@ export default ButtonComponent;
 
 const styles = StyleSheet.create({
   buttonWrapper: {
-    backgroundColor: "gray",
+    backgroundColor: colors.secondary,
     padding: 9,
   },
   buttonText: {
-    color: "#fff",
+    color: colors.white,
     textAlign: "center",
     fontSize: 17,
   },

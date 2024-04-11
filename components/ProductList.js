@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from "react-native";
+import colors from "../constants/colors";
 
 export default function ProductList({ data, onProductRemove }) {
   const removeItem = (key) => onProductRemove(key);
@@ -17,6 +18,7 @@ export default function ProductList({ data, onProductRemove }) {
         <Pressable
           // onLongPress={() => removeItem(item.key)}
           onPress={() => removeItem(item.key)}
+          style={styles.items}
         >
           <View style={styles.listItem}>
             <Text style={styles.element}>{item.name}</Text>
@@ -24,7 +26,6 @@ export default function ProductList({ data, onProductRemove }) {
         </Pressable>
       )}
       keyExtractor={(item) => item.key}
-      style={styles.items}
     />
   );
 }
@@ -32,17 +33,17 @@ export default function ProductList({ data, onProductRemove }) {
 const styles = StyleSheet.create({
   items: {
     marginTop: 10,
+    backgroundColor: colors.primary,
+    borderRadius: 15,
   },
   element: {
-    backgroundColor: "#192a56",
-    color: "#fff",
-    padding: 20,
+    color: colors.white,
+    padding: 15,
     fontSize: 20,
     marginVertical: 10,
     // marginRight: 2,
     flexGrow: 1,
-    borderRadius: 15,
-    fontWeight: "800"
+    fontWeight: "800",
   },
   listItem: {
     flexDirection: "row",

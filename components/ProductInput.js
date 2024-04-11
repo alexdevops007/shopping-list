@@ -1,6 +1,7 @@
 import { Button, Modal, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import ButtonComponent from "./button/ButtonComponent";
+import colors from "../constants/colors";
 
 export default function ProductInput({
   onProductAdd,
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   textInput: {
-    borderColor: "gray",
+    borderColor: colors.secondary,
     borderWidth: 1,
     padding: 10,
     paddingLeft: 9,
@@ -67,12 +68,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   bgBtnValidate: {
-    backgroundColor: "#192a56",
+    backgroundColor: colors.primary,
     borderRadius: 6,
     width: 150,
   },
   bgBtnCancel: {
-    backgroundColor: "#b33939",
+    backgroundColor: colors.danger,
     borderRadius: 6,
     width: 150,
   },
