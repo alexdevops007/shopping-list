@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Button,
   Image,
   ImageBackground,
   Modal,
@@ -13,6 +12,7 @@ import ProductInput from "./components/ProductInput";
 import ProductList from "./components/ProductList";
 import DismissKeyboard from "./components/DismissKeyboard";
 import ButtonComponent from "./components/button/ButtonComponent";
+import HeaderComponent from "./components/header/HeaderComponent";
 
 export default function App() {
   const [list, setList] = useState([]);
@@ -50,70 +50,68 @@ export default function App() {
   return (
     <DismissKeyboard>
       <ImageBackground
-        style={styles.container}
+        style={styles.bgImage}
         source={{
           uri: "https://cdn.pixabay.com/photo/2021/05/30/19/52/abstract-rainbow-6296890_1280.jpg",
         }}
       >
-        <Modal
-          visible={isVisibleModal}
-          onRequestClose={() => setIsVisibleModal(false)}
-          animationType="slide"
-          hardwareAccelerated
-          transparent={true}
-        >
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <View style={styles.modalHeader}>
-                <Text style={styles.modalHeaderText}>OUPS !</Text>
-              </View>
-              <View style={styles.modalBody}>
-                <Image
-                  source={require("./assets/red-check-128.png")}
-                  style={styles.redCheck}
-                />
-                {/* <Image
+        <HeaderComponent />
+        <View style={styles.container}>
+          <Modal
+            visible={isVisibleModal}
+            onRequestClose={() => setIsVisibleModal(false)}
+            animationType="slide"
+            hardwareAccelerated
+            transparent={true}
+          >
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent}>
+                <View style={styles.modalHeader}>
+                  <Text style={styles.modalHeaderText}>OUPS !</Text>
+                </View>
+                <View style={styles.modalBody}>
+                  <Image
+                    source={require("./assets/red-check-128.png")}
+                    style={styles.redCheck}
+                  />
+                  {/* <Image
                   source={{
                     uri: "https://cdn.pixabay.com/photo/2013/07/12/12/40/abort-146096_1280.png",
                   }}
                   style={styles.redCheck}
                 /> */}
-                <Text style={styles.modalBodyText}>
-                  Merci d'indiquer plus d'un seul caractère
-                </Text>
-              </View>
-              <View style={styles.modalFooter}>
-                <Pressable
-                  style={styles.pressableBtnModal}
-                  onPress={() => setIsVisibleModal(false)}
-                >
-                  <Text style={styles.modalFooterText}>OK</Text>
-                </Pressable>
+                  <Text style={styles.modalBodyText}>
+                    Merci d'indiquer plus d'un seul caractère
+                  </Text>
+                </View>
+                <View style={styles.modalFooter}>
+                  <Pressable
+                    style={styles.pressableBtnModal}
+                    onPress={() => setIsVisibleModal(false)}
+                  >
+                    <Text style={styles.modalFooterText}>OK</Text>
+                  </Pressable>
+                </View>
               </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
 
-        {/* <Button
-          title="Nouveau produit"
-          onPress={() => setDisplayAddProductModal(!displayAddProductModal)}
-        /> */}
+          <ButtonComponent
+            onPressHandler={() =>
+              setDisplayAddProductModal(!displayAddProductModal)
+            }
+            style={styles.btnAddProduct}
+          >
+            Nouveau produit
+          </ButtonComponent>
 
-        <ButtonComponent
-          onPressHandler={() =>
-            setDisplayAddProductModal(!displayAddProductModal)
-          }
-          style={styles.btnAddProduct}
-        >
-          Nouveau produit
-        </ButtonComponent>
-
-        <ProductInput
-          onProductAdd={addProductToList}
-          displayModal={displayAddProductModal}
-          onProductCancel={cancelNewProduct}
-        />
-        <ProductList data={list} onProductRemove={removeProductFromList} />
+          <ProductInput
+            onProductAdd={addProductToList}
+            displayModal={displayAddProductModal}
+            onProductCancel={cancelNewProduct}
+          />
+          <ProductList data={list} onProductRemove={removeProductFromList} />
+        </View>
       </ImageBackground>
     </DismissKeyboard>
   );
@@ -183,6 +181,11 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 30,
     borderWidth: 3,
-    borderColor: "#fff"
+    borderColor: "#fff",
+    marginBottom: 20,
+    marginTop: -30
   },
+  bgImage: {
+    flex: 1,
+  }
 });

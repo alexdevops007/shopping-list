@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     padding: 20,
     fontSize: 20,
-    marginVertical: 5,
+    marginVertical: 10,
     // marginRight: 2,
     flexGrow: 1,
     borderRadius: 15,
