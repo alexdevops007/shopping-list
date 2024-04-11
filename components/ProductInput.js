@@ -66,12 +66,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   bgBtnValidate: {
-    backgroundColor: "#01a3a4",
+    backgroundColor: "#34ace0",
     borderRadius: 6,
     width: 150,
   },
   bgBtnCancel: {
-    backgroundColor: "#ee5253",
+    backgroundColor: "#b33939",
     borderRadius: 6,
     width: 150,
   },

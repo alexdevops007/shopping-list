@@ -12,6 +12,7 @@ import {
 import ProductInput from "./components/ProductInput";
 import ProductList from "./components/ProductList";
 import DismissKeyboard from "./components/DismissKeyboard";
+import ButtonComponent from "./components/button/ButtonComponent";
 
 export default function App() {
   const [list, setList] = useState([]);
@@ -93,10 +94,19 @@ export default function App() {
           </View>
         </Modal>
 
-        <Button
+        {/* <Button
           title="Nouveau produit"
           onPress={() => setDisplayAddProductModal(!displayAddProductModal)}
+        /> */}
+
+        <ButtonComponent
+          btnTitle="Nouveau produit"
+          onPressHandler={() =>
+            setDisplayAddProductModal(!displayAddProductModal)
+          }
+          style={styles.btnAddProduct}
         />
+
         <ProductInput
           onProductAdd={addProductToList}
           displayModal={displayAddProductModal}
@@ -166,5 +176,8 @@ const styles = StyleSheet.create({
   redCheck: {
     width: 100,
     height: 100,
+  },
+  btnAddProduct: {
+    backgroundColor: "#218c74",
   },
 });

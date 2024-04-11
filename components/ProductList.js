@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
   element: {
     backgroundColor: "#192a56",
     color: "#fff",
-    padding: 17,
-    fontSize: 17,
+    padding: 20,
+    fontSize: 20,
     marginVertical: 5,
     // marginRight: 2,
     flexGrow: 1,
