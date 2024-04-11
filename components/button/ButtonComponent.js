@@ -1,13 +1,16 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 
 const ButtonComponent = ({ onPressHandler, style, children }) => {
   return (
-    <Pressable onPress={onPressHandler}>
+    <TouchableOpacity 
+        onPress={onPressHandler}
+        activeOpacity={0.9}
+    >
       <View style={{ ...styles.buttonWrapper, ...style }}>
         <Text style={styles.buttonText}>{children}</Text>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

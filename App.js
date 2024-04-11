@@ -180,5 +180,9 @@ const styles = StyleSheet.create({
   },
   btnAddProduct: {
     backgroundColor: "#218c74",
+    padding: 20,
+    borderRadius: 30,
+    borderWidth: 3,
+    borderColor: "#fff"
   },
 });
