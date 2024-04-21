@@ -1,7 +1,8 @@
-import { Button, Modal, StyleSheet, TextInput, View } from "react-native";
+import { Modal, StyleSheet, View } from "react-native";
 import { useState } from "react";
 import ButtonComponent from "./button/ButtonComponent";
 import colors from "../constants/colors";
+import InputComponent from "./input/InputComponent";
 
 export default function ProductInput({
   onProductAdd,
@@ -10,7 +11,10 @@ export default function ProductInput({
 }) {
   const [product, setProduct] = useState("");
 
-  const inputHandler = (val) => setProduct(val);
+  const inputHandler = (val) => {
+    const regex = /[^a-z]/gi
+    setProduct(val.replace(regex, ''));
+  }
 
   const submitHandler = () => {
     const trimmedProduct = product.trim();
@@ -22,12 +26,14 @@ export default function ProductInput({
   return (
     <Modal visible={displayModal} animationType="slide">
       <View style={styles.containerView}>
-        <TextInput
+        <InputComponent
           style={styles.textInput}
           placeholder="Nouveau produit"
           onChangeText={inputHandler}
           value={product}
+          maxLength={15}
         />
+
         <View style={styles.containerButton}>
           <ButtonComponent
             onPressHandler={submitHandler}
@@ -55,13 +61,12 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   textInput: {
-    borderColor: colors.secondary,
-    borderWidth: 1,
     padding: 10,
-    paddingLeft: 9,
-    fontSize: 16,
-    // flexGrow: 1,
-    marginBottom: 9,
+    textAlign: "center",
+    fontSize: 19,
+    borderRadius: 10,
+    marginBottom: 15,
+    height: 50,
   },
   containerButton: {
     flexDirection: "row",
