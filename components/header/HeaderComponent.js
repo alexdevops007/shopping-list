@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
   headerContent: {
     color: colors.white,
     fontSize: 30,
-    fontWeight: "bold",
+    // fontWeight: "bold",
+    fontFamily: "pacifico-regular",
     padding: 9,
   },
 });

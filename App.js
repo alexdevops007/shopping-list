@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   ImageBackground,
@@ -8,6 +8,8 @@ import {
   Text,
   View,
 } from "react-native";
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
 import ProductInput from "./components/ProductInput";
 import ProductList from "./components/ProductList";
 import DismissKeyboard from "./components/DismissKeyboard";
@@ -15,10 +17,35 @@ import ButtonComponent from "./components/button/ButtonComponent";
 import HeaderComponent from "./components/header/HeaderComponent";
 import colors from "./constants/colors";
 
-export default function App() {
+const App = () => {
   const [list, setList] = useState([]);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [displayAddProductModal, setDisplayAddProductModal] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadFonts = async () => {
+      await Font.loadAsync({
+        // Inter
+        "inter-bold": require("./assets/fonts/Inter-Bold.ttf"),
+        "inter-regular": require("./assets/fonts/Inter-Regular.ttf"),
+        // Montserrat
+        "montserrat-bold": require("./assets/fonts/Montserrat-Bold.ttf"),
+        "montserrat-regular": require("./assets/fonts/Montserrat-Regular.ttf"),
+        // Poppins
+        "poppins-bold": require("./assets/fonts/Poppins-Bold.ttf"),
+        "poppins-regular": require("./assets/fonts/Poppins-Regular.ttf"),
+        // Roboto
+        "roboto-bold": require("./assets/fonts/Roboto-Bold.ttf"),
+        "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
+        // Pacifico
+        "pacifico-regular": require("./assets/fonts/Pacifico-Regular.ttf"),
+      });
+      setFontsLoaded(true);
+    };
+
+    loadFonts();
+  }, []);
 
   const capitalizeFirstLetter = (string) => {
     return {
@@ -48,7 +75,13 @@ export default function App() {
     setList((currentList) => currentList.filter((item) => item.key !== key));
   };
 
-  return (
+  return !fontsLoaded ? (
+    <AppLoading
+      startAsync={Font.loadAsync}
+      onFinish={() => setFontsLoaded(true)}
+      onError={console.warn}
+    />
+  ) : (
     <DismissKeyboard>
       <ImageBackground
         style={styles.bgImage}
@@ -75,12 +108,6 @@ export default function App() {
                     source={require("./assets/red-check-128.png")}
                     style={styles.redCheck}
                   />
-                  {/* <Image
-                  source={{
-                    uri: "https://cdn.pixabay.com/photo/2013/07/12/12/40/abort-146096_1280.png",
-                  }}
-                  style={styles.redCheck}
-                /> */}
                   <Text style={styles.modalBodyText}>
                     Merci d'indiquer plus d'un seul caractère
                   </Text>
@@ -116,7 +143,7 @@ export default function App() {
       </ImageBackground>
     </DismissKeyboard>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -190,3 +217,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default App;
