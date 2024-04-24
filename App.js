@@ -8,7 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
-import * as Font from "expo-font";
+// import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import ProductInput from "./components/ProductInput";
 import ProductList from "./components/ProductList";
@@ -17,35 +17,50 @@ import ButtonComponent from "./components/button/ButtonComponent";
 import HeaderComponent from "./components/header/HeaderComponent";
 import colors from "./constants/colors";
 
+import {
+  useFonts,
+  BalsamiqSans_400Regular,
+  BalsamiqSans_700Bold,
+} from "@expo-google-fonts/balsamiq-sans";
+
 const App = () => {
   const [list, setList] = useState([]);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [displayAddProductModal, setDisplayAddProductModal] = useState(false);
-  const [fontsLoaded, setFontsLoaded] = useState(false);
+  // const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  useEffect(() => {
-    const loadFonts = async () => {
-      await Font.loadAsync({
-        // Inter
-        "inter-bold": require("./assets/fonts/Inter-Bold.ttf"),
-        "inter-regular": require("./assets/fonts/Inter-Regular.ttf"),
-        // Montserrat
-        "montserrat-bold": require("./assets/fonts/Montserrat-Bold.ttf"),
-        "montserrat-regular": require("./assets/fonts/Montserrat-Regular.ttf"),
-        // Poppins
-        "poppins-bold": require("./assets/fonts/Poppins-Bold.ttf"),
-        "poppins-regular": require("./assets/fonts/Poppins-Regular.ttf"),
-        // Roboto
-        "roboto-bold": require("./assets/fonts/Roboto-Bold.ttf"),
-        "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
-        // Pacifico
-        "pacifico-regular": require("./assets/fonts/Pacifico-Regular.ttf"),
-      });
-      setFontsLoaded(true);
-    };
+  // useEffect(() => {
+  //   const loadFonts = async () => {
+  //     await Font.loadAsync({
+  //       // Inter
+  //       "inter-bold": require("./assets/fonts/Inter-Bold.ttf"),
+  //       "inter-regular": require("./assets/fonts/Inter-Regular.ttf"),
+  //       // Montserrat
+  //       "montserrat-bold": require("./assets/fonts/Montserrat-Bold.ttf"),
+  //       "montserrat-regular": require("./assets/fonts/Montserrat-Regular.ttf"),
+  //       // Poppins
+  //       "poppins-bold": require("./assets/fonts/Poppins-Bold.ttf"),
+  //       "poppins-regular": require("./assets/fonts/Poppins-Regular.ttf"),
+  //       // Roboto
+  //       "roboto-bold": require("./assets/fonts/Roboto-Bold.ttf"),
+  //       "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
+  //       // Pacifico
+  //       "pacifico-regular": require("./assets/fonts/Pacifico-Regular.ttf"),
+  //     });
+  //     setFontsLoaded(true);
+  //   };
 
-    loadFonts();
-  }, []);
+  //   loadFonts();
+  // }, []);
+
+  let [fontsLoaded, error] = useFonts({
+    Balsamiq_Regular: BalsamiqSans_400Regular,
+    BalsamiqS_Bold: BalsamiqSans_700Bold,
+    "pacifico-regular": require("./assets/fonts/Pacifico-Regular.ttf"),
+    "poppins-regular": require("./assets/fonts/Poppins-Regular.ttf"),
+    "montserrat-regular": require("./assets/fonts/Montserrat-Regular.ttf"),
+    "inter-regular": require("./assets/fonts/Inter-Regular.ttf"),
+  });
 
   const capitalizeFirstLetter = (string) => {
     return {
@@ -76,11 +91,7 @@ const App = () => {
   };
 
   return !fontsLoaded ? (
-    <AppLoading
-      startAsync={Font.loadAsync}
-      onFinish={() => setFontsLoaded(true)}
-      onError={console.warn}
-    />
+    <AppLoading />
   ) : (
     <DismissKeyboard>
       <ImageBackground
