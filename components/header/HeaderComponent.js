@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import colors from "../../constants/colors";
+import TitleComponent from "../title/TitleComponent";
 
 const HeaderComponent = () => {
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.headerContent}>My Shopping List</Text>
+      <TitleComponent style={styles.headerContent}>
+        My Shopping List
+      </TitleComponent>
     </View>
   );
 };
@@ -23,7 +26,7 @@ const styles = StyleSheet.create({
   headerContent: {
     color: colors.white,
     fontSize: 30,
-    // fontWeight: "bold",
+    //fontWeight: "bold",
     fontFamily: "Balsamiq_Regular",
     padding: 9,
   },
