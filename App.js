@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Image,
   ImageBackground,
@@ -27,31 +27,6 @@ const App = () => {
   const [list, setList] = useState([]);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [displayAddProductModal, setDisplayAddProductModal] = useState(false);
-  // const [fontsLoaded, setFontsLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   const loadFonts = async () => {
-  //     await Font.loadAsync({
-  //       // Inter
-  //       "inter-bold": require("./assets/fonts/Inter-Bold.ttf"),
-  //       "inter-regular": require("./assets/fonts/Inter-Regular.ttf"),
-  //       // Montserrat
-  //       "montserrat-bold": require("./assets/fonts/Montserrat-Bold.ttf"),
-  //       "montserrat-regular": require("./assets/fonts/Montserrat-Regular.ttf"),
-  //       // Poppins
-  //       "poppins-bold": require("./assets/fonts/Poppins-Bold.ttf"),
-  //       "poppins-regular": require("./assets/fonts/Poppins-Regular.ttf"),
-  //       // Roboto
-  //       "roboto-bold": require("./assets/fonts/Roboto-Bold.ttf"),
-  //       "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
-  //       // Pacifico
-  //       "pacifico-regular": require("./assets/fonts/Pacifico-Regular.ttf"),
-  //     });
-  //     setFontsLoaded(true);
-  //   };
-
-  //   loadFonts();
-  // }, []);
 
   let [fontsLoaded, error] = useFonts({
     Balsamiq_Regular: BalsamiqSans_400Regular,

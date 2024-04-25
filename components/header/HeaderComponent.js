@@ -1,13 +1,12 @@
 import { StyleSheet, View } from "react-native";
 import colors from "../../constants/colors";
 import TitleComponent from "../title/TitleComponent";
+import appStyles from "../../constants/appStyles";
 
 const HeaderComponent = () => {
   return (
     <View style={styles.headerContainer}>
-      <TitleComponent style={styles.headerContent}>
-        My Shopping List
-      </TitleComponent>
+      <TitleComponent style={appStyles.headerOne}>My Shopping List</TitleComponent>
     </View>
   );
 };
@@ -22,12 +21,5 @@ const styles = StyleSheet.create({
     minHeight: 30,
     paddingTop: 25,
     paddingBottom: 15,
-  },
-  headerContent: {
-    color: colors.white,
-    fontSize: 30,
-    //fontWeight: "bold",
-    fontFamily: "Balsamiq_Regular",
-    padding: 9,
   },
 });

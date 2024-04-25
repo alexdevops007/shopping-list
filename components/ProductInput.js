@@ -3,6 +3,9 @@ import { useState } from "react";
 import ButtonComponent from "./button/ButtonComponent";
 import colors from "../constants/colors";
 import InputComponent from "./input/InputComponent";
+import BodyTextComponent from "./text/BodyTextComponent";
+import appStyles from "../constants/appStyles";
+import TitleComponent from "./title/TitleComponent";
 
 export default function ProductInput({
   onProductAdd,
@@ -18,14 +21,21 @@ export default function ProductInput({
 
   const submitHandler = () => {
     const trimmedProduct = product.trim();
-    // if (trimmedProduct !== "" && trimmedProduct.length > 1) {
     onProductAdd(trimmedProduct);
     setProduct("");
-    // }
   };
   return (
     <Modal visible={displayModal} animationType="slide">
       <View style={styles.containerView}>
+
+        <TitleComponent style={appStyles.headerTwo}>
+          Veuillez indiquer un produit
+        </TitleComponent>
+        
+        <BodyTextComponent style={appStyles.textBody}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, quas debitis assumenda eligendi odio enim, ipsum architecto, placeat aperiam at eius. Corrupti suscipit est facilis a animi hic accusantium alias.
+        </BodyTextComponent>
+
         <InputComponent
           style={styles.textInput}
           placeholder="Nouveau produit"

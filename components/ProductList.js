@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 import colors from "../constants/colors";
 
 export default function ProductList({ data, onProductRemove }) {
@@ -15,12 +16,11 @@ export default function ProductList({ data, onProductRemove }) {
     <FlatList
       data={data}
       renderItem={({ item }) => (
-        <Pressable
-          // onLongPress={() => removeItem(item.key)}
-          onPress={() => removeItem(item.key)}
-          style={styles.items}
-        >
+        <Pressable onPress={() => removeItem(item.key)} style={styles.items}>
           <View style={styles.listItem}>
+            <AntDesign 
+              name="delete" 
+              size={29} color={colors.white} />
             <Text style={styles.element}>{item.name}</Text>
           </View>
         </Pressable>
@@ -33,17 +33,16 @@ export default function ProductList({ data, onProductRemove }) {
 const styles = StyleSheet.create({
   items: {
     marginTop: 10,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.danger,
     borderRadius: 15,
+    flexDirection: "row",
+    padding: 15,
+    alignItems: "center"
   },
   element: {
     color: colors.white,
-    padding: 15,
-    fontSize: 20,
-    marginVertical: 10,
-    // marginRight: 2,
-    flexGrow: 1,
-    fontWeight: "800",
+    fontSize: 18,
+    marginLeft: 20
   },
   listItem: {
     flexDirection: "row",
